@@ -1227,6 +1227,8 @@ The right chunk size depends on the kind of answer:
 
 We start with the default and then tune it with evals on our own data.
 
+Even with good chunking, a chunk can lose its context. A chunk that says "Revenue grew by 3% over the previous quarter" does not tell us which company or which quarter it is about. To fix this, we use **Contextual Retrieval**: before storing each chunk, an LLM writes a short note that explains where the chunk comes from, and we add that note to the chunk before computing its embedding and its BM25 index. We have a detailed blog on [How does Contextual Retrieval work?](https://outcomeschool.com/blog/how-does-contextual-retrieval-work)
+
 ### Hybrid Search
 
 Vector search is great at finding meaning. But it is bad at exact-match queries like "Order ID 12345" or "Section 4.2.1".
